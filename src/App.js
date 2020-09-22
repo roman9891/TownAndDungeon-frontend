@@ -1,26 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
+import LoginContainer from './Containers/LoginContainer'
+import TownAndDungeon from './Containers/TownAndDungeon'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  state = {
+    login: true,
+    user: {},
+  }
+
+  appHandler = (user) => {
+    this.setState({
+      login: false,
+      user: user,
+    }, () => console.log(this.state))
+  }
+  
+  render() {
+    return (
+      <div>
+        {this.state.login ? <LoginContainer appHandler={this.appHandler}/> : <TownAndDungeon user={this.state.user}/>} 
+      </div>
+    );
+  }
 }
 
 export default App;

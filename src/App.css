@@ -1,38 +1,106 @@
+div {
+  display: flex;
+  border: 1px solid black;
+  border-radius: 3px;
+  width: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: .97em;
+  /* margin: 1px; */
+}
+
 .App {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+#login-container {
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  flex-direction: column;
 }
 
-.App-link {
-  color: #61dafb;
+#login {
+  width: 30vh;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#signup {
+  width: 30vh;
+}
+
+#town-and-dungeon {
+
+}
+
+#town-container {
+  flex-direction: column;
+}
+
+#town-character-container {
+  height: 55vh;
+}
+
+#town-character-info {
+  max-width: 35vh;
+}
+
+#town-skill-container {
+  height: 40vh;
+}
+
+#character-skill-div {
+  flex-direction: column;
+  width: 100%;
+}
+
+#town-skill-info {
+  max-width: 35vh;
+}
+
+.town-character-card {
+  flex-direction: column;
+  width: 25%;
+  margin: 1vh;
+}
+
+.inner-town-character-card {
+  flex-direction: column;
+  width: auto;
+  height: 95%;
+  margin: 1vh;
+  cursor: pointer;
+}
+
+.class-name {
+  justify-content: center;
+}
+
+.town-character-card-image {
+  /* width: 90%; */
+  max-height: 40%;
+}
+
+#town-skill-list {
+  align-items: center;
+}
+
+.town-skill-card {
+  height: 10vh;
+}
+
+.inner-town-skill-card {
+  height: auto;
+  justify-content: center;
+  align-items: center;
+  margin: 1%;
+  cursor: pointer;
+}
+
+#floor-list {
+  flex-direction: column;
+}
+
+.floor {
+  justify-content: center;
+}
+
+#floor-info {
+
 }
