@@ -21,7 +21,7 @@ class Login extends Component {
     }
 
     getUser = () => {
-        return {username: this.state.username, progress: 3}
+        return {username: this.state.username, progress: 10}
     }
 
     render() {
@@ -32,6 +32,7 @@ class Login extends Component {
                     <input name='username' onChange={this.changeHandler} value={this.state.username}></input>
                     <label>Password</label>
                     <input type='password' name='password' onChange={this.changeHandler} value={this.state.password}></input>
+                    <br/>
                     <button type='submit'>Login</button>
                     <button type='submit'>Create Account</button>
                 </form>

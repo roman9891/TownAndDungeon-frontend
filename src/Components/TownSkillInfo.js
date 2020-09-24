@@ -4,7 +4,8 @@ class TownSkillInfo extends Component {
     render() {
         return (
             <div id='town-skill-info'>
-                Skill Info
+                <div>{this.props.selectedSkill.name}</div>
+                <div>{this.props.selectedSkill.info}</div>
             </div>
         );
     }

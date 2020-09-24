@@ -6,23 +6,49 @@ div {
   font-family: Arial, Helvetica, sans-serif;
   font-size: .97em;
   /* margin: 1px; */
-}
+} 
 
-.App {
+#App {
   text-align: center;
+  /* width: 100vh; */
 }
 
 #login-container {
-  justify-content: center;
+  display: flex;
   flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
 }
 
 #login {
-  width: 30vh;
+  display: flex;
+  border: 1px solid black;
+  width: 40vw;
+  height: 40vh;
+  flex-direction: column;
+  /* max-width: 30vh; */
+  /* height: 30vh; */
+  justify-content: center;
+  /* justify-self: center; */
+  align-items: center;
+  /* flex-basis: auto; */
+  /* left: 10% */
+}
+
+#login form {
+  display: flex;
+  /* border: 1px solid black; */
+  flex-direction: column;
+  /* align-items: center; */
+  text-align: center;
 }
 
 #signup {
+  border: 1px solid black;
   width: 30vh;
+  height: 30%;
 }
 
 #town-and-dungeon {
@@ -102,5 +128,57 @@ div {
 }
 
 #floor-info {
+  flex-direction: column;
+  height: 100vh;
+}
 
+#floor-info-div {
+  flex-direction: column;
+}
+
+#battle-container {
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+}
+
+#battle-enemy-container {
+  height: 50%;
+}
+
+.battle-outer-enemy-card {
+  width: 25%;
+  height: 100%;
+}
+
+.battle-inner-enemy-card {
+  flex-direction: column;
+}
+
+.battle-enemy-image {
+  width: 100%;
+  height: 60%;
+}
+
+#battle-hero-container {
+  height: 50%;
+}
+
+.battle-outer-hero-card {
+  width: 25%;
+  height: 100%;
+}
+
+.battle-inner-hero-card {
+  flex-direction: column;
+  height: 100%;
+}
+
+.battle-hero-image {
+  width: 100%;
+  height: 60%;
+}
+
+.battle-skill-card {
+  cursor: pointer;
 }

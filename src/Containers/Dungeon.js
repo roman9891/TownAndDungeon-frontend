@@ -20,7 +20,7 @@ class Dungeon extends Component {
         return (
             <div id='dungeon'>
                 <FloorList user={this.props.user} dungeonHandler={this.dungeonHandler}/>
-                <FloorInfo selectedFloor={this.state.selectedFloor}/>
+                <FloorInfo floor={this.state.selectedFloor}/>
                 {this.state.selectedFloor ? <button onClick={this.clickHandler}>To Battle!</button> : null}
             </div>
         );

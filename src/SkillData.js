@@ -1,82 +1,134 @@
 const skills = {
     warrior: [
         {
-            id: 0,
-            name: `attack`,
+            name: `Attack`,
             cost: 10,
             target: 'single enemy',
+            type: 'P',
             power: 20,
             info: `Regular attack`
-        },
-        {
-            id: 1,
-            name: `block`,
-            class: 'warrior',
+          },
+        //   {
+        //     name: `Block`,
+        //     cost: 0,
+        //     target: 'self',
+        //     power: 0,
+        //     info: `Reduces damage for the turn`
+        //   },
+        //   {
+        //     name: `Tickle`,
+        //     cost: 1,
+        //     target: 'single enemy',
+        //     power: 1,
+        //     info: `Devestatingly funny...`
+        //   },
+          {
+            name: `Def-Up`,
             cost: 0,
             target: 'self',
-            power: 0,
-            info: `Reduces damage for the turn`
-        },
-        {
-            id: 2,
-            name: `tickle`,
-            cost: 1,
-            target: 'single enemy',
-            power: 1,
-            info: `Devestatingly funny...`
-        },
-        {
-            id: 3,
-            name: `Def-Up`,
-            class: 'warrior',
-            cost: 20,
-            target: 'self',
-            beforeEffect: [[`userDamageReduction`, 1.5]],
+            type: 'S',
+            beforeEffect: [[`pDef`, 1.5], [`pAtk`, (1/1.5)]],
             power: 0,
             info: `Raises the users defense by 50%`
-        },
-        {
-            id: 4,
+          },
+          {
             name: `Atk-Up`,
-            class: 'warrior',
-            cost: 30,
+            cost: 0,
             target: 'self',
-            beforeEffect: [[`userPowerIncrease`, 1.5]],
+            type: 'S',
+            beforeEffect: [[`pAtk`, 1.5],[`pDef`, (1/1.5)]],
             power: 0,
             info: `Raises the users attack by 50%`
-        },
-        {
-            id: 5,
+          },
+          {
             name: `Embolden`,
-            class: 'warrior',
+            type: 'B',
             cost: 50,
             target: 'self',
-            beforeEffect: [[`userDamageReduction`, 1.5],[`userPowerIncrease`, 1.5]],
+            beforeEffect: [[`pDef`, 1.5],[`pAtk`, 1.5]],
+            power: 0,
             info: `Raises the users attack and defense by 50%`
-        },
-        {
-            id: 6,
+          },
+          {
             name: `Power Attack`,
-            class: 'warrior',
             cost: 30,
             target: `single enemy`,
+            type: 'P',
             power: 40,
             info: `Big beefy bash`
-        },
-        {
-            id: 7,
+          },
+          {
             name: `Cyclone`,
-            cost: 40,
+            cost: 30,
             target: 'all enemy',
             type: 'P',
             power: 20,
-            info: `Wide reach attack that hits all enemies`
-          }
+            info: `A wide attack against all enemies`
+        },
+        {
+            id: 10,
+            name: 'Aura Strike',
+            cost: 20,
+            target: 'single enemy',
+            type: 'D',
+            damage: (user, target) => {
+                if (user.buff) return 30 * user.pAtk / target.mDef
+                else return 20 * user.pAtk / target.pDef
+            },
+            info: 'An attack that resonates with auras. Does extra damage if buffed.'
+        },
+        {
+            id: 13,
+            name: 'Stun Strike',
+            cost: 50,
+            target: 'single enemy',
+            type: 'D',
+            damage: (user, target) => {
+                if (target.stance) {
+                    target.stance[0].forEach(effect => {
+                        target[effect[0]] = target[effect[0]] / effect[1]
+                    })
+                    target.stance = null
+                    return 50 * user.pAtk / target.pDef
+                }
+                else {return 40 * user.pAtk / target.pDef}
+            },
+            info: 'Forceful blow that removes the targets stance'
+        },
+        {
+            id: 14,
+            name: 'Rest',
+            cost: 0,
+            target: 'self',
+            type: 'E',
+            effect: (user, target) => {
+                if ((user.hp + 10) > user.mHp) {
+                    user.hp = user.mHp
+                } else {
+                    user.hp = user.hp + 10
+                } 
+            },
+            power: 0,
+            info: 'Take a breather and regain HP'
+        },
+        {
+            id: 15,
+            name: 'Provoke',
+            cost: 10,
+            target: 'self',
+            type: 'E',
+            effect: (user, target) => {
+                if (user.hide) {user.hide = false}
+                user.provoke = true
+            },
+            power: 0,
+            info: 'Take a breather and regain HP'
+        }
     ],
     wizard: [
         {
             id: 7,
-            name: `attack`,
+            name: `Attack`,
             cost: 10,
             target: 'single enemy',
             type: 'P',
@@ -88,9 +140,80 @@ const skills = {
             name: 'Charge',
             cost: 0,
             target: 'self',
-            type: 'S',
+            type: 'E',
+            effect: (user, target) => {
+                if ((user['starting-energy'] + 10) > user['max-energy']) {
+                    user['starting-energy'] = user['max-energy']
+                } else {
+                    user['starting-energy'] = user['starting-energy'] + 10
+                }  
+            },
             power: 0,
             info: 'Gather mana to restore energy'
+        },
+        {
+            id: 9,
+            name: 'Magic Missle',
+            cost: 20,
+            target: 'single enemy',
+            type: 'D',
+            damage: (user, target) => {return 30 * user.mAtk / target.mDef},
+            info: 'Strong magical attack'
+        },
+        {
+            id: 10,
+            name: 'Fireball',
+            cost: 50,
+            target: 'all enemy',
+            type: 'D',
+            damage: (user, target) => {return 50 * user.mAtk / target.mDef},
+            info: "Burn's all targets"
+        },
+        {
+            id: 11,
+            name: 'Trance',
+            cost: 0,
+            target: 'self',
+            type: 'S',
+            beforeEffect: [[`mAtk`, 1.5],[`mDef`, (1/1.5)]],
+            info: 'Raises magic attack and lowers magic defense'
+        },
+        {
+            id: 12,
+            name: 'Enervate',
+            cost: 50,
+            target: 'single ally',
+            type: 'B',
+            beforeEffect: [[`mAtk`, 1.5],[`mDef`, (1.5)]],
+            info: `Raises an ally's magic attack and defense`
+        },
+        {
+            id: 16,
+            name: 'Invisibility',
+            cost: 50,
+            target: 'single ally',
+            type: 'E',
+            effect: (user, target) => {
+                if (target.provoke) {target.provoke = false}
+                target.hide = true
+            },
+            info: `Decreases the targets chance of being targeted`
+        },
+        {
+            id: 17,
+            name: 'Shatter',
+            cost: 50,
+            target: 'single enemy',
+            type: 'E',
+            damage: (user, target) => {
+                if (target.buff) {
+                    target.buff[0].forEach(effect => {
+                        target[effect[0]] = target[effect[0]] / effect[1]
+                    })
+                    target.buff = null
+                }
+            },
+            info: 'Forceful blow that removes the targets stance'
         },
     ]
 }

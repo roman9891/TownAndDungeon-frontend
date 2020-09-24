@@ -8,7 +8,7 @@ const classes = [
         pDef: 1,
         mAtk: 1,
         mDef: 1,
-        'starting-energy': 50,
+        'starting-energy': 30,
         'max-energy': 100,
         roles: ['phys. damage dealer', 'tank'],
         info: 'A hearty fighter that has strong physical attack and defense',
@@ -24,11 +24,11 @@ const classes = [
         pDef: 1,
         mAtk: 1,
         mDef: 1,
-        'starting-energy': 50,
+        'starting-energy': 30,
         'max-energy': 100,
         roles: ['magic damage', 'support'],
         info: 'Crafty magic user that can cast damaging and supportive spells',
-        image: 'https://lh3.googleusercontent.com/proxy/r236Q30_dTEIGjE70TzOgBuqELin8apk29WxS1xnF-yQ3zPvT2unb6n_R9WJwWSvL_aa5HuoLR6v3lNdM_e_DUUSbVZazlpKbZgP_KG0VRGHAeLgYOpU1Mv4TieKXTJ1K3hoQUZzhv8vgDrvlMerG9Q'
+        image: 'https://lh3.googleusercontent.com/proxy/dpVEimPCCkkX3YAIU4c9S23SXxZAi1zJ9Qf5mrAIV2seh8-VVG3QdKItphcd3YooUpqXfRXSa2PI5h5HWdNbUKF1G1ql7c1jwBpuAyrvzo7jWBasuXhfe84b8nAEy__F-5RaR8DSGwS0OzGGRnTIJqk'
     }
 ]
 

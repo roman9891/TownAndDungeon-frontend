@@ -7,7 +7,7 @@ class LoginContainer extends Component {
         return (
             <div id='login-container'>
                 <Login appHandler={this.props.appHandler}/>
-                <Signup/>
+                {/* <Signup/> */}
             </div>
         );
     }

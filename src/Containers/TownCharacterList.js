@@ -8,9 +8,12 @@ class TownCharacterList extends Component {
         key={classObject.id} 
         class={classObject} 
         townHandler={this.props.townHandler}
+        selectedSkills={this.props.selectedSkills}
+        skillRemover={this.props.skillRemover}
     />)
     
     render() {
+        console.log(this.props)
         return (
             <div>
                 {this.renderCharacters()}
