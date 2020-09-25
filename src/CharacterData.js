@@ -1,6 +1,7 @@
 const classes = [
     {
         id: 0,
+        name: `warrior`,
         class: `Warrior`,
         hp: 100,
         mhp: 100,
@@ -16,7 +17,7 @@ const classes = [
     },
     {   
         id: 1,
-        name: '',
+        name: 'wizard',
         class: 'Wizard',
         hp: 100,
         mhp: 100,
@@ -28,7 +29,7 @@ const classes = [
         'max-energy': 100,
         roles: ['magic damage', 'support'],
         info: 'Crafty magic user that can cast damaging and supportive spells',
-        image: 'https://lh3.googleusercontent.com/proxy/dpVEimPCCkkX3YAIU4c9S23SXxZAi1zJ9Qf5mrAIV2seh8-VVG3QdKItphcd3YooUpqXfRXSa2PI5h5HWdNbUKF1G1ql7c1jwBpuAyrvzo7jWBasuXhfe84b8nAEy__F-5RaR8DSGwS0OzGGRnTIJqk'
+        image: 'https://lh3.googleusercontent.com/proxy/tmzgBMESQrrLfVMvITU19ZWh5M_dL6MbJJEI7CSh9jrAw2jFxqGwtvJY5qYEevDL0nfq3awZoqeEWBp0iqXoSfUclIZ-ZdkoiR4B7RIUxoGRDYCDw6kR4Vemxfvndl-XlzxV9Q8S6bx4funr5vXnzSM'
     }
 ]
 

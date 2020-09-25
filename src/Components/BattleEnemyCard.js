@@ -8,16 +8,19 @@ class BattleEnemyCard extends Component {
     }
     
     render() {
+        const hp = {width: `${((this.props.enemy.hp) / this.props.enemy.mhp)*100}%`}
+        
         return (
             <div className='battle-outer-enemy-card' onClick={this.clickHandler}>
                 <div className='battle-inner-enemy-card'>
                     <div>{this.props.enemy.name}</div>
                     <img className='battle-enemy-image' src={this.props.enemy.image} alt=''></img>
+                    <div className='hp' style={hp}></div>
                     <div>{this.props.enemy.hp}/{this.props.enemy.mhp}</div>
                     <div>{this.props.enemy.nrg}/{this.props.enemy.mNrg}</div>
-                    <div>Stance:</div>
-                    <div>Buff:</div>
-                    <div>Condition:</div>
+                    <div>Stance: {this.props.enemy.stance ? this.props.enemy.stance[1] : null}</div>
+                    <div>Buff: {this.props.enemy.buff ? this.props.enemy.buff[1] : null}</div>
+                    <div>Condition: {this.props.enemy.condition ? this.props.enemy.condition : null}</div>
                 </div>
             </div>
         );

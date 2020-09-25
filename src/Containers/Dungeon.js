@@ -16,7 +16,7 @@ class Dungeon extends Component {
     }
     
     render() {
-        console.log(this.props)
+        // console.log(this.props)
         return (
             <div id='dungeon'>
                 <FloorList user={this.props.user} dungeonHandler={this.dungeonHandler}/>

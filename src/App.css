@@ -78,6 +78,7 @@ div {
 
 #town-skill-info {
   max-width: 35vh;
+  flex-direction: column;
 }
 
 .town-character-card {
@@ -181,4 +182,11 @@ div {
 
 .battle-skill-card {
   cursor: pointer;
+}
+
+.hp {
+  background-color: lightgreen;
+  border: 1px solid black;
+  border-radius: 5px;
+  height: 10px;
 }

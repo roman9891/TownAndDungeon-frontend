@@ -7,7 +7,7 @@ const skills = {
             type: 'P',
             power: 20,
             info: `Regular attack`
-          },
+        },
         //   {
         //     name: `Block`,
         //     cost: 0,
@@ -23,7 +23,7 @@ const skills = {
         //     info: `Devestatingly funny...`
         //   },
           {
-            name: `Def-Up`,
+            name: `Guard Stance`,
             cost: 0,
             target: 'self',
             type: 'S',
@@ -32,7 +32,7 @@ const skills = {
             info: `Raises the users defense by 50%`
           },
           {
-            name: `Atk-Up`,
+            name: `Beserker Stance`,
             cost: 0,
             target: 'self',
             type: 'S',
@@ -44,14 +44,14 @@ const skills = {
             name: `Embolden`,
             type: 'B',
             cost: 50,
-            target: 'self',
+            target: 'single ally',
             beforeEffect: [[`pDef`, 1.5],[`pAtk`, 1.5]],
             power: 0,
             info: `Raises the users attack and defense by 50%`
           },
           {
             name: `Power Attack`,
-            cost: 30,
+            cost: 50,
             target: `single enemy`,
             type: 'P',
             power: 40,
@@ -59,7 +59,7 @@ const skills = {
           },
           {
             name: `Cyclone`,
-            cost: 30,
+            cost: 50,
             target: 'all enemy',
             type: 'P',
             power: 20,
@@ -68,7 +68,7 @@ const skills = {
         {
             id: 10,
             name: 'Aura Strike',
-            cost: 20,
+            cost: 30,
             target: 'single enemy',
             type: 'D',
             damage: (user, target) => {
@@ -89,9 +89,9 @@ const skills = {
                         target[effect[0]] = target[effect[0]] / effect[1]
                     })
                     target.stance = null
-                    return 50 * user.pAtk / target.pDef
+                    return 40 * user.pAtk / target.pDef
                 }
-                else {return 40 * user.pAtk / target.pDef}
+                else {return 30 * user.pAtk / target.pDef}
             },
             info: 'Forceful blow that removes the targets stance'
         },
@@ -109,7 +109,7 @@ const skills = {
                 } 
             },
             power: 0,
-            info: 'Take a breather and regain HP'
+            info: `Increase user's chance of being targeted`
         },
         {
             id: 15,
@@ -154,7 +154,7 @@ const skills = {
         {
             id: 9,
             name: 'Magic Missle',
-            cost: 20,
+            cost: 30,
             target: 'single enemy',
             type: 'D',
             damage: (user, target) => {return 30 * user.mAtk / target.mDef},
@@ -163,7 +163,7 @@ const skills = {
         {
             id: 10,
             name: 'Fireball',
-            cost: 50,
+            cost: 70,
             target: 'all enemy',
             type: 'D',
             damage: (user, target) => {return 50 * user.mAtk / target.mDef},
@@ -205,7 +205,7 @@ const skills = {
             cost: 50,
             target: 'single enemy',
             type: 'E',
-            damage: (user, target) => {
+            effect: (user, target) => {
                 if (target.buff) {
                     target.buff[0].forEach(effect => {
                         target[effect[0]] = target[effect[0]] / effect[1]
@@ -213,7 +213,7 @@ const skills = {
                     target.buff = null
                 }
             },
-            info: 'Forceful blow that removes the targets stance'
+            info: `Remove an enemy's buff`
         },
     ]
 }

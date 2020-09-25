@@ -54,7 +54,7 @@ class TownContainer extends Component {
     }
 
     render() {
-        console.log(this.props)
+        // console.log(this.props)
         return (
             <div id='town-container'>
                 <button onClick={this.clickHandler}>{this.state.town ? 'To Dungeon' : 'To Town'}</button>

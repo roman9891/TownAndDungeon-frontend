@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 class FloorInfo extends Component {
-    renderEnemies = (enemiesArray) => enemiesArray.map(enemy => enemy.name)
+    renderEnemies = (enemiesArray) => enemiesArray.map(enemy => enemy.name).join(' / ')
     
     render() {
         console.log(this.props)

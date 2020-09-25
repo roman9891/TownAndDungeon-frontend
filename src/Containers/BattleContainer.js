@@ -73,7 +73,7 @@ class BattleContainer extends Component {
     }
 
     actionByType = (action, target, user) => {
-        console.log('ABT: ',action, target, user)
+        console.log(`${user.name} uses ${action.name} on ${target.name}`,action, target, user)
         
         if (action.type === 'B') {
           if (target.buff) {
@@ -145,13 +145,30 @@ class BattleContainer extends Component {
     }
     
     enemyTurn = (enemy) => {
-        const index = (this.state.turn < enemy.actions.length) ? this.state.turn : (this.state.turn % enemy.actions.length)
+        // const index = (this.state.turn < enemy.actions.length) ? this.state.turn : (this.state.turn % enemy.actions.length)
         const action = enemy.chooseAction(enemy)//enemy.actions[index]
         // const heroIndex = Math.floor(Math.random() * this.state.heroes.length)
         // const targetHero = this.state.heroes[heroIndex]
         // this.setState({currentTarget: [targetHero, heroIndex]}, this.actionByType(action, targetHero, enemy))
-        const target = this.enemyChooseTarget()
-        this.setState({currentTarget: [target[0], target[1]]}, this.actionByType(action, target[0], enemy))
+        console.log(`choose target`)
+        if (action.target === 'single enemy') {
+            const target = this.enemyChooseTarget()
+            this.setState({currentTarget: [target[0], target[1]]}, this.actionByType(action, target[0], enemy))
+        }
+        if (action.target === 'all enemy') {
+          this.state.heroes.forEach(hero => this.actionByType(action, hero, enemy))
+        //   setTimeout(() => {if (this.state.actionsUsed === this.state.heroes.length) {this.checkVictory()}}, 1000)
+        }
+        if (action.target === 'self') {
+          this.actionByType(action, enemy, enemy)
+        }
+        if (action.target === 'single ally') {
+            const target = this.enemyChooseAlly(action)
+            this.setState({currentTarget: [target[0], target[1]]}, this.actionByType(action, target[0], enemy))
+        }
+        if (action.target === 'all allies') {}
+        // const target = this.enemyChooseTarget()
+        // this.setState({currentTarget: [target[0], target[1]]}, this.actionByType(action, target[0], enemy))
     }
 
     enemyChooseTarget = () => {
@@ -176,6 +193,15 @@ class BattleContainer extends Component {
         const index = Math.floor(Math.random() * seenHeroes.length)
         const target = seenHeroes[index]
         return [target, index]
+    }
+
+    enemyChooseAlly = (action) => {
+        if (action.type === 'B') {
+            const enemiesWithoutBuffs = this.state.enemies.filter(enemy => !enemy.buff)
+            const index = Math.floor(Math.random() * enemiesWithoutBuffs.length)
+            const target = enemiesWithoutBuffs[index]
+            return [target, index]
+        }
     }
 
     endTurn = () => {

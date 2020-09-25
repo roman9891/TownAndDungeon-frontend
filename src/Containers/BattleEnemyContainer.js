@@ -3,7 +3,7 @@ import BattleEnemyCard from '../Components/BattleEnemyCard'
 
 class BattleEnemyContainer extends Component {
     renderEnemies = () => this.props.enemies.map((enemy, i)=> <BattleEnemyCard
-        key={enemy.id}
+        key={i}
         enemy={enemy}
         index={i}
         targeting={this.props.targeting}
