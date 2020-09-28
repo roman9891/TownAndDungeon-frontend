@@ -32,6 +32,11 @@ class TownAndDungeon extends Component {
         }
     }
 
+    leaveHandler = () => {
+        console.log('leaving')
+        this.setState({battle: false})
+    }
+
     render() {
         return (
             <div id='town-and-dungeon'>
@@ -39,6 +44,7 @@ class TownAndDungeon extends Component {
                     <BattleContainer 
                         participants={this.state.participants} 
                         victoryHandler={this.victoryHandler}
+                        leaveHandler={this.leaveHandler}
                     /> : 
                     <TownContainer 
                         user={this.state.user} 

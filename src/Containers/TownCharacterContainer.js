@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import TownCharacterList from './TownCharacterList'
-import TownCharacterInfo from '../Components/TownCharacterInfo'
+// import TownCharacterInfo from '../Components/TownCharacterInfo'
 
 class TownCharacterContainer extends Component {
     render() {
@@ -11,7 +11,7 @@ class TownCharacterContainer extends Component {
                     selectedSkills={this.props.selectedSkills}
                     skillRemover={this.props.skillRemover}
                 />
-                <TownCharacterInfo/>
+                {/* <TownCharacterInfo/> */}
             </div>
         );
     }

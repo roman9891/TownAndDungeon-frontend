@@ -6,8 +6,13 @@ class TownSkillContainer extends Component {
     render() {
         return (
             <div id='town-skill-container'>
+                
+                <TownSkillList 
+                    selectedHero={this.props.selectedHero} 
+                    skillHandler={this.props.skillHandler}
+                    user={this.props.user}
+                />
                 <TownSkillInfo selectedSkill={this.props.selectedSkill}/>
-                <TownSkillList selectedHero={this.props.selectedHero} skillHandler={this.props.skillHandler}/>
             </div>
         );
     }

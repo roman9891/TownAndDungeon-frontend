@@ -14,11 +14,12 @@ class BattleContainer extends Component {
         actionEffects: {},
         actionsUsed: 0,
         actionsAgainst: 'enemies',
+        log: []
     }
 
     actionHandler = (action, heroIndex) => {
         const hero = this.state.heroes[heroIndex]
-        console.log(`actionHandler`, hero, action.cost)
+        // console.log(`actionHandler`, hero, action.cost)
         hero['starting-energy'] = hero['starting-energy'] - action.cost
         
         this.setState({
@@ -45,7 +46,18 @@ class BattleContainer extends Component {
             console.log('targeting ally')
             this.setState({targeting: 'ally'})
         }
-        if (action.target === 'all allies') {}
+        if (action.target === 'all allies') {
+            this.state.heroes.forEach(hero => this.actionByType(this.state.currentAction[0], hero, this.state.currentAction[1]))
+            setTimeout(() => {if (this.state.actionsUsed === this.state.heroes.length) {this.checkVictory()}}, 1000)
+        }
+        if (action.target === 'random enemy') {
+            for (let i = 0; i < action.hits; i ++) {
+                const index = Math.floor(Math.random() * this.state.enemies.length)
+                const target = this.state.enemies[index]
+                this.actionByType(action, target, this.state.currentAction[1])
+            }
+            if (this.state.actionsUsed === this.state.heroes.length) {this.checkVictory()}
+        }
     }
 
     targetHandler = (enemyIndex) => {
@@ -73,7 +85,11 @@ class BattleContainer extends Component {
     }
 
     actionByType = (action, target, user) => {
-        console.log(`${user.name} uses ${action.name} on ${target.name}`,action, target, user)
+        // console.log(`${user.name} uses ${action.name} on ${target.name}`,action, target, user)
+        setTimeout(() => {
+            this.setState({log: [`${user.class ? user.class : user.name} uses ${action.name} on ${target.class ? target.class : target.name}`,...this.state.log]})
+        }, 500)
+        
         
         if (action.type === 'B') {
           if (target.buff) {
@@ -127,7 +143,6 @@ class BattleContainer extends Component {
         }
 
         if (action.type === 'E') {
-            console.log('using effect')
             action.effect(user, target)
         }
         this.setState({[this.state.actionsAgainst]: this.state[this.state.actionsAgainst].filter(unit => unit.hp > 0)})
@@ -139,8 +154,15 @@ class BattleContainer extends Component {
 
     enemiesTurn = () => {
         this.setState({actionsAgainst: 'heroes'}, () => {
-          this.state.enemies.forEach(enemy => this.enemyTurn(enemy))
-          setTimeout(this.checkVictory, 500)
+            this.state.enemies.forEach((enemy, i, arr)=> setTimeout(() => {
+                this.enemyTurn(enemy)
+                if (i + 1 === arr.length) {
+                    setTimeout(this.checkVictory, 500)
+                }
+                console.log('forEachEnemy', i, arr.length)
+        }
+        , ((i * 600) + 1000)))
+        //   setTimeout(this.checkVictory, 500)
         })
     }
     
@@ -150,7 +172,7 @@ class BattleContainer extends Component {
         // const heroIndex = Math.floor(Math.random() * this.state.heroes.length)
         // const targetHero = this.state.heroes[heroIndex]
         // this.setState({currentTarget: [targetHero, heroIndex]}, this.actionByType(action, targetHero, enemy))
-        console.log(`choose target`)
+        console.log(`Enemy Turn`)
         if (action.target === 'single enemy') {
             const target = this.enemyChooseTarget()
             this.setState({currentTarget: [target[0], target[1]]}, this.actionByType(action, target[0], enemy))
@@ -167,6 +189,12 @@ class BattleContainer extends Component {
             this.setState({currentTarget: [target[0], target[1]]}, this.actionByType(action, target[0], enemy))
         }
         if (action.target === 'all allies') {}
+        if (action.target === 'random enemy') {
+            for (let i = 0; i < action.hits; i ++) {
+                const target = this.enemyChooseTarget()
+                this.actionByType(action, target[0], enemy)
+            }
+        }
         // const target = this.enemyChooseTarget()
         // this.setState({currentTarget: [target[0], target[1]]}, this.actionByType(action, target[0], enemy))
     }
@@ -201,6 +229,10 @@ class BattleContainer extends Component {
             const index = Math.floor(Math.random() * enemiesWithoutBuffs.length)
             const target = enemiesWithoutBuffs[index]
             return [target, index]
+        } else {
+            const index = Math.floor(Math.random() * this.state.enemies.length)
+            const target = this.state.enemies[index]
+            return [target, index]
         }
     }
 
@@ -211,6 +243,7 @@ class BattleContainer extends Component {
             } else {
                 hero['starting-energy'] = hero['starting-energy'] + 20
             }
+            if (hero.condition) {hero.condition.effect(hero)}
         })
         this.state.enemies.forEach(enemy => {
             if (enemy.nrg + 20 > enemy.mNrg) {
@@ -218,6 +251,7 @@ class BattleContainer extends Component {
             } else {
                 enemy.nrg = enemy.nrg + 20
             }
+            if (enemy.condition) {enemy.condition.effect(enemy)}
         })
         
         this.setState({
@@ -226,6 +260,8 @@ class BattleContainer extends Component {
           show: true,
           actionsUsed: 0,
           actionsAgainst: 'enemies',
+          heroes: this.state.heroes.filter(unit => unit.hp > 0),
+          enemies: this.state.enemies.filter(unit => unit.hp > 0)
         }, () => console.log('EoT:',this.state))
     }
 
@@ -239,11 +275,20 @@ class BattleContainer extends Component {
             this.props.victoryHandler(true)
         }
     }
+
+    clickHandler = () => {
+        this.props.leaveHandler()
+    }
+
+    renderLogs = () => this.state.log.map(eachLog => <p>{eachLog}</p>)
+    
     
     render() {
         // console.log(this.state.heroes)
         return (
-            <div id='battle-container'>
+            <div>
+                <div id='battle-container'>
+                <button onClick={this.clickHandler}>To Town</button>
                 <BattleEnemyContainer 
                     enemies={this.state.enemies}
                     targeting={(this.state.targeting === 'enemy') ? true : false}
@@ -254,10 +299,13 @@ class BattleContainer extends Component {
                     heroes={this.state.heroes}
                     actionHandler={this.actionHandler}
                     show={this.state.show}
-                    targeting={this.state.targeting}
+                    targeting={(this.state.targeting === 'ally') ? true : false}
                     allyHandler={this.allyHandler}
                 />
+                </div>
+                <div id='battle-info'>{this.renderLogs()}</div>
             </div>
+            
         );
     }
 }

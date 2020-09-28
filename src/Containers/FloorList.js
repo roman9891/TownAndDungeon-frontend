@@ -4,10 +4,12 @@ import {floors} from '../FloorData'
 
 class FloorList extends Component {
 
-    renderFloors = () => floors.filter(floor => floor.num <= this.props.user.progress).map(floor => <Floor 
+    renderFloors = () => floors.map(floor => <Floor 
+        reached= {floor.num <= this.props.user.progress ? false : true}
         key={floor.id} 
         floor={floor}
         dungeonHandler={this.props.dungeonHandler}
+        floorHandler={this.props.floorHandler}
         />)
 
     render() {

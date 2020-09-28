@@ -12,11 +12,19 @@ class TownSkillList extends Component {
         skill={skill}
         skillHandler={this.props.skillHandler}
         />)
+
+    renderSkillsByProgress = () => skills[this.props.selectedHero]
+        .filter(skill => skill.progress < this.props.user.progress)
+        .map(skill => <TownSkillCard 
+        key={skill.id} 
+        skill={skill}
+        skillHandler={this.props.skillHandler}
+        />)
     
     render() {
         return (
             <div id='town-skill-list'>
-                {this.props.selectedHero ? this.renderSkills() : null}
+                {this.props.selectedHero ? this.renderSkillsByProgress() : null}
             </div>
         );
     }

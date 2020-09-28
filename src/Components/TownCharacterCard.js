@@ -20,10 +20,10 @@ class TownCharacterCard extends Component {
                 <div onClick={this.clickHandler} className='inner-town-character-card'>
                     <div className='class-name'>{this.props.class.class}</div>
                     <img className='town-character-card-image' src={this.props.class.image} alt=''></img>
-                    <div>HP:{this.props.class.hp}</div>
-                    <div>Energy:{this.props.class['starting-energy']}/{this.props.class['max-energy']}</div>
-                    <div>Roles:{this.props.class.roles}</div>
-                    <div>Info:{this.props.class.info}</div>
+                    {/* <div>HP:{this.props.class.hp}</div> */}
+                    {/* <div>Energy:{this.props.class['starting-energy']}/{this.props.class['max-energy']}</div> */}
+                    <div className='roles'>{this.props.class.roles.join(' / ')}</div>
+                    <div className='town-character-card-info'>{this.props.class.info}</div>
                     {this.renderSkills()/* <div>skill</div>
                     <div>skill</div>
                     <div>skill</div>

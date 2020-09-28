@@ -3,14 +3,17 @@ import TownCharacterContainer from './TownCharacterContainer'
 import TownSkillContainer from './TownSkillContainer'
 import Dungeon from './Dungeon'
 import {classes} from '../CharacterData'
+import {skills} from '../SkillData'
 
 class TownContainer extends Component {
     state = {
         town: true,
-        selectedHero: '',
+        selectedHero: 'warrior',
         selectedSkill: {},
-        warrior: this.props.skills.find(skillSet => skillSet[0] === 'warrior') ? this.props.skills.find(skillSet => skillSet[0] === 'warrior')[1] : [], 
-        wizard: this.props.skills.find(skillSet => skillSet[0] === 'wizard') ? this.props.skills.find(skillSet => skillSet[0] === 'wizard')[1] : [],
+        warrior: this.props.skills.find(skillSet => skillSet[0] === 'warrior') ? this.props.skills.find(skillSet => skillSet[0] === 'warrior')[1] : [...skills.warrior.filter(skill => skill.progress === 0)], 
+        wizard: this.props.skills.find(skillSet => skillSet[0] === 'wizard') ? this.props.skills.find(skillSet => skillSet[0] === 'wizard')[1] : [...skills.wizard.filter(skill => skill.progress === 0)],
+        rogue: this.props.skills.find(skillSet => skillSet[0] === 'rogue') ? this.props.skills.find(skillSet => skillSet[0] === 'rogue')[1] : [...skills.rogue.filter(skill => skill.progress === 0)],
+        cleric: this.props.skills.find(skillSet => skillSet[0] === 'cleric') ? this.props.skills.find(skillSet => skillSet[0] === 'cleric')[1] : [...skills.cleric.filter(skill => skill.progress === 0)],
     }
 
     clickHandler = () => {
@@ -33,15 +36,23 @@ class TownContainer extends Component {
         if (this.state.selectedHero === 'wizard' && !this.state.wizard.includes(skill) && this.state.wizard.length < 4) {
             this.setState({wizard: this.state.wizard.concat(skill)}, () => console.log(this.state))
         }
+        if (this.state.selectedHero === 'rogue' && !this.state.rogue.includes(skill) && this.state.rogue.length < 4) {
+            this.setState({rogue: this.state.rogue.concat(skill)}, () => console.log(this.state))
+        }
+        if (this.state.selectedHero === 'cleric' && !this.state.cleric.includes(skill) && this.state.cleric.length < 4) {
+            this.setState({cleric: this.state.cleric.concat(skill)}, () => console.log(this.state))
+        }
     }
 
     floorHandler = (floor) => {
         const enemiesWithId = floor.enemies.map((enemy,i) => {return {...enemy,index: i}})
         const heroes = classes.map((hero, i) => {return {...hero, index: i}})
         const participants = {heroes: heroes, enemies: enemiesWithId}
-        // console.log(participants.heroes[0])
+        // console.log(participants.heroes)
         participants.heroes[0].skills = this.state.warrior
         participants.heroes[1].skills = this.state.wizard
+        participants.heroes[2].skills = this.state.rogue
+        participants.heroes[3].skills = this.state.cleric
         this.props.battleHandler(participants, floor.num)
     }
 
@@ -61,13 +72,14 @@ class TownContainer extends Component {
                 {this.state.town ? 
                     <div id='character-skill-div'>
                         <TownCharacterContainer townHandler={this.townHandler}
-                            selectedSkills={{warrior: this.state.warrior, wizard: this.state.wizard}}
+                            selectedSkills={{warrior: this.state.warrior, wizard: this.state.wizard, rogue: this.state.rogue, cleric: this.state.cleric}}
                             skillRemover={this.skillRemover}
                         />
                         <TownSkillContainer 
                             selectedHero={this.state.selectedHero} 
                             selectedSkill={this.state.selectedSkill}
                             skillHandler={this.skillHandler}
+                            user={this.props.user}
                         />
                     </div> 
                     : 

@@ -15,7 +15,7 @@ class TownCharacterList extends Component {
     render() {
         // console.log(this.props)
         return (
-            <div>
+            <div id='town-character-list'>
                 {this.renderCharacters()}
             </div>
         );

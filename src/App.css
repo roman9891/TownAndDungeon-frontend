@@ -1,6 +1,6 @@
 div {
   display: flex;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   border-radius: 3px;
   width: 100%;
   font-family: Arial, Helvetica, sans-serif;
@@ -20,12 +20,15 @@ div {
   height: 100vh;
   justify-content: center;
   align-items: center;
+  background-image: url('https://i.pinimg.com/originals/3f/ae/ef/3faeefab917eebc7e7e417a753e4d8a8.jpg');
+  background-size: cover;
 }
 
 #login {
   display: flex;
   border: 1px solid black;
-  width: 40vw;
+  background-color: white;
+  width: 20vw;
   height: 40vh;
   flex-direction: column;
   /* max-width: 30vh; */
@@ -51,40 +54,34 @@ div {
   height: 30%;
 }
 
-#town-and-dungeon {
-
-}
-
 #town-container {
   flex-direction: column;
+  background-image: url('https://i.pinimg.com/originals/3f/ae/ef/3faeefab917eebc7e7e417a753e4d8a8.jpg');
+  background-size: cover;
 }
 
 #town-character-container {
-  height: 55vh;
+  height: 65vh;
+  width: 100vw;
+  /* justify-content: space-between; */
+  align-items: center;
 }
 
-#town-character-info {
-  max-width: 35vh;
-}
-
-#town-skill-container {
-  height: 40vh;
-}
-
-#character-skill-div {
-  flex-direction: column;
-  width: 100%;
-}
-
-#town-skill-info {
-  max-width: 35vh;
-  flex-direction: column;
+#town-character-list {
+  height: 65vh;
+  width: 100vw;
+  /* justify-content: space-between; */
+  align-items: center;
 }
 
 .town-character-card {
+  max-width: 15vw;
+  height: 50vh;
+  background-color: beige;
   flex-direction: column;
-  width: 25%;
-  margin: 1vh;
+  /* width: 20%; */
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .inner-town-character-card {
@@ -93,15 +90,59 @@ div {
   height: 95%;
   margin: 1vh;
   cursor: pointer;
+  background-color: white;
+}
+
+.roles {
+  justify-content: center;
+  background-color: burlywood;
+}
+
+.town-character-card-info
+
+#town-character-info {
+  max-width: 35vh;
+}
+
+#town-skill-container {
+  height: 30vh;
+  flex-direction: column;
+}
+
+#town-skill-list {
+  align-self: flex-start;
+}
+
+#character-skill-div {
+  flex-direction: column;
+  width: 100%;
+}
+
+.town-skill-card {
+  background-color: white;
+}
+
+#town-skill-info {
+  color: white;
+  max-width: 35vh;
+  flex-direction: column;
 }
 
 .class-name {
   justify-content: center;
+  background-color: burlywood;
 }
 
 .town-character-card-image {
   /* width: 90%; */
   max-height: 40%;
+  background-color: #a69eb1;
+}
+
+.town-character-card-info {
+  align-items: center;
+  justify-content: center;
+  height: 20%;
 }
 
 #town-skill-list {
@@ -110,6 +151,9 @@ div {
 
 .town-skill-card {
   height: 10vh;
+  background-color: burlywood;
+  border: 1px solid beige;
+
 }
 
 .inner-town-skill-card {
@@ -120,40 +164,97 @@ div {
   cursor: pointer;
 }
 
+#dungeon {
+  height: 100vh;
+  width: 100vw;
+  flex-direction: column;
+  background-image: url('https://i.pinimg.com/originals/20/f0/56/20f0562c04c9a047679132d8c29677c0.jpg');
+  background-size: cover;
+}
+
+#dungeon-image-container {
+  /* flex-direction: row; */
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  height: 25vh;
+}
+
+#dungeon-image {
+  width: 40vw;
+  height: 100vh;
+  /* right: 0; */
+}
+
+.town-enemy-image {
+  height: 25vh;
+  width: 15vw;
+}
+
 #floor-list {
   flex-direction: column;
+  width: 100%;
 }
 
 .floor {
+  flex-direction: column;
+  width: 100%;
+  /* background-color: black; */
   justify-content: center;
 }
 
 #floor-info {
   flex-direction: column;
-  height: 100vh;
+  width: 100vw;
+  height: 100%;
+  background-color: white;
+}
+
+.floor-info-blurb {
+  justify-content: center;
 }
 
 #floor-info-div {
   flex-direction: column;
 }
 
+.floor-info-enemy-card {
+  flex-direction: column;
+  width: 20%;
+  height: 100%;
+}
+
+.floor-info-enemy-card div {
+  justify-content: center;
+}
+
+.floor-info-enemy-card-image {
+  height: 100%;
+}
+
 #battle-container {
   flex-direction: column;
   width: 100%;
   height: 100vh;
+  background-image: url('https://i.pinimg.com/originals/26/8f/35/268f35bb3334a06076dd4e90a9f2a28d.jpg');
+  background-size: cover;
 }
 
 #battle-enemy-container {
   height: 50%;
+  justify-content: center;
 }
 
 .battle-outer-enemy-card {
-  width: 25%;
-  height: 100%;
+  width: 17%;
+  height: 92%;
+  padding: 1%;
+  background-color: beige;
 }
 
 .battle-inner-enemy-card {
   flex-direction: column;
+  background-color: white;
 }
 
 .battle-enemy-image {
@@ -163,25 +264,42 @@ div {
 
 #battle-hero-container {
   height: 50%;
+  justify-content: center;
 }
 
 .battle-outer-hero-card {
-  width: 25%;
-  height: 100%;
+  width: 17%;
+  max-height: 87%;
+  padding: 1%;
+  background-color: beige;
 }
 
 .battle-inner-hero-card {
   flex-direction: column;
   height: 100%;
+  background-color: white;
 }
 
 .battle-hero-image {
   width: 100%;
-  height: 60%;
+  height: 40%;
+  border: 1px solid black;
+  border-radius: 3px;
+}
+
+.battle-skill-container {
+  height: 100%;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .battle-skill-card {
   cursor: pointer;
+  width: 45%;
+  height: 40%;
+  margin: auto;
+  justify-content: center;
+  align-items: center;
 }
 
 .hp {
@@ -189,4 +307,20 @@ div {
   border: 1px solid black;
   border-radius: 5px;
   height: 10px;
+}
+
+.nrg {
+  background-color: rgb(144, 185, 238);
+  border: 1px solid black;
+  border-radius: 5px;
+  height: 10px;
+}
+
+#battle-info {
+  flex-direction: column;
+  width: 20vw;
+  height: 48vh;
+  overflow: scroll;
+  align-self: flex-end;
+  padding: 1%;
 }

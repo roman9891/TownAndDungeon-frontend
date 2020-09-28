@@ -12,8 +12,10 @@ class BattleSkillCard extends Component {
     }
     
     render() {
+        const notEnoughEnergy = {opacity: .5}
+
         return (
-            <div className='battle-skill-card' onClick={this.clickHandler}>
+            <div className='battle-skill-card' onClick={this.clickHandler} style={this.props.skill.cost > this.props.energy ? notEnoughEnergy : null}>
                 {this.props.skill.name}
             </div>
         );

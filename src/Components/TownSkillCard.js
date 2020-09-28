@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 class TownSkillCard extends Component {
     
     clickHandler = () => {
+        // console.log(this.props.skill)
         this.props.skillHandler(this.props.skill)
     }
     
