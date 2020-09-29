@@ -10,6 +10,7 @@ class BattleHeroContainer extends Component {
         show={this.props.show}
         targeting={this.props.targeting}
         allyHandler={this.props.allyHandler}
+        infoHandler={this.props.infoHandler}
     />)
     
     render() {

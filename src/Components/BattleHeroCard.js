@@ -33,6 +33,7 @@ class BattleHeroCard extends Component {
                         energy={this.props.hero['starting-energy']} 
                         actionHandler={this.props.actionHandler} 
                         show={this.props.show}
+                        infoHandler={this.props.infoHandler}
                     />
                 </div>
             </div>

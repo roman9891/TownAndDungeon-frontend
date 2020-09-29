@@ -15,6 +15,7 @@ class BattleSkillContainer extends Component {
         heroId={this.props.heroId}
         energy={this.props.energy} 
         actionHider={this.actionHider}
+        infoHandler={this.props.infoHandler}
     />)
 
     componentDidUpdate(prevProps) {
@@ -22,6 +23,8 @@ class BattleSkillContainer extends Component {
             this.setState({showActions: true})
         }
     }
+
+    
     
     render() {
         return (

@@ -10,12 +10,22 @@ class BattleSkillCard extends Component {
             this.props.actionHider()
         }  
     }
+
+    hoverHandler = () => {
+        console.log('hover')
+        this.props.infoHandler(this.props.skill)
+    }
     
     render() {
         const notEnoughEnergy = {opacity: .5}
 
         return (
-            <div className='battle-skill-card' onClick={this.clickHandler} style={this.props.skill.cost > this.props.energy ? notEnoughEnergy : null}>
+            <div 
+                className='battle-skill-card' 
+                onClick={this.clickHandler} 
+                style={this.props.skill.cost > this.props.energy ? notEnoughEnergy : null} 
+                onMouseEnter={this.hoverHandler}
+            >
                 {this.props.skill.name}
             </div>
         );

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import BattleHeroContainer from './BattleHeroContainer'
 import BattleEnemyContainer from './BattleEnemyContainer'
+import BattleInfo from '../Components/BattleInfo'
 
 class BattleContainer extends Component {
     state = {
@@ -14,7 +15,8 @@ class BattleContainer extends Component {
         actionEffects: {},
         actionsUsed: 0,
         actionsAgainst: 'enemies',
-        log: []
+        log: [],
+        info: {}
     }
 
     actionHandler = (action, heroIndex) => {
@@ -280,7 +282,11 @@ class BattleContainer extends Component {
         this.props.leaveHandler()
     }
 
-    renderLogs = () => this.state.log.map(eachLog => <p>{eachLog}</p>)
+    infoHandler = (info) => {
+        this.setState({info: info})
+    }
+
+    renderLogs = () => this.state.log.map(eachLog => <div>{eachLog}</div>)
     
     
     render() {
@@ -288,24 +294,27 @@ class BattleContainer extends Component {
         return (
             <div>
                 <div id='battle-container'>
-                <button onClick={this.clickHandler}>To Town</button>
-                <BattleEnemyContainer 
-                    enemies={this.state.enemies}
-                    targeting={(this.state.targeting === 'enemy') ? true : false}
-                    targetHandler={this.targetHandler}
-                    currentTarget={this.state.currentTarget}
-                />
-                <BattleHeroContainer 
-                    heroes={this.state.heroes}
-                    actionHandler={this.actionHandler}
-                    show={this.state.show}
-                    targeting={(this.state.targeting === 'ally') ? true : false}
-                    allyHandler={this.allyHandler}
-                />
+                    <button onClick={this.clickHandler}>To Town</button>
+                    <BattleEnemyContainer 
+                        enemies={this.state.enemies}
+                        targeting={(this.state.targeting === 'enemy') ? true : false}
+                        targetHandler={this.targetHandler}
+                        currentTarget={this.state.currentTarget}
+                    />
+                    <BattleHeroContainer 
+                        heroes={this.state.heroes}
+                        actionHandler={this.actionHandler}
+                        show={this.state.show}
+                        targeting={(this.state.targeting === 'ally') ? true : false}
+                        allyHandler={this.allyHandler}
+                        infoHandler={this.infoHandler}
+                    />
                 </div>
-                <div id='battle-info'>{this.renderLogs()}</div>
+                <div id='battle-info-container'>
+                    <BattleInfo info={this.state.info}/>
+                    <div id='battle-log'>{this.renderLogs()}</div>
+                </div>
             </div>
-            
         );
     }
 }
