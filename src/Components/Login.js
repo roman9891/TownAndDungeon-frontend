@@ -38,8 +38,8 @@ class Login extends Component {
     }
 
     getUser = () => {
-        fetch(`http://localhost:3000/api/v1/users`, {
-            method: `GET`,
+        fetch(`http://localhost:3000/api/v1/login`, {
+            method: `POST`,
             headers: {
                 'Content-Type': 'application/json',
                 Accept: 'application/json'
@@ -47,7 +47,7 @@ class Login extends Component {
             body: JSON.stringify({user: {...this.state}})
         })
         .then(r => r.json())
-        .then(user => this.props.appHandler(user))
+        .then(console.log)
         // return {username: this.state.username, progress: 10}
     }
 
@@ -61,7 +61,8 @@ class Login extends Component {
             body: JSON.stringify({user: {...this.state, progress: 1}})
         })
         .then(r => r.json())
-        .then(user => this.props.appHandler(user))
+        .then(console.log)
+        // .then(user => this.props.appHandler(user))
         // return {username: this.state.username, progress: 10}
     }
 
