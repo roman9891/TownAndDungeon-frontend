@@ -32,6 +32,10 @@ class TownAndDungeon extends Component {
         }
     }
 
+    updateUser = () => {
+        fetch(`http://localhost:3000/api/v1/users/${this.props.user.user.id}`)
+    }
+
     leaveHandler = () => {
         console.log('leaving')
         this.setState({battle: false})
