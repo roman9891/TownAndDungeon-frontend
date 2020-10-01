@@ -294,7 +294,7 @@ class BattleContainer extends Component {
         return (
             <div>
                 <div id='battle-container'>
-                    <button onClick={this.clickHandler}>To Town</button>
+                    <button onClick={this.clickHandler}>← Town</button>
                     <BattleEnemyContainer 
                         enemies={this.state.enemies}
                         targeting={(this.state.targeting === 'enemy') ? true : false}

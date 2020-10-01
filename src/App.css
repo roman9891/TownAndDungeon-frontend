@@ -6,7 +6,11 @@ div {
   font-family: Arial, Helvetica, sans-serif;
   font-size: .97em;
   /* margin: 1px; */
-} 
+}
+
+button {
+  background-color: rgb(247, 195, 117);
+}
 
 #App {
   text-align: center;
@@ -41,6 +45,14 @@ div {
   /* opacity: .5; */
 }
 
+#logo {
+  border-style: none;
+  font-size: x-large;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  justify-content: center;
+  margin-bottom: 10%;
+}
+
 #login form {
   display: flex;
   /* border: 1px solid black; */
@@ -53,6 +65,22 @@ div {
   border: 1px solid black;
   width: 30vh;
   height: 30%;
+}
+
+#fake-nav {
+  background-color: rgb(86, 100, 86);
+}
+
+#nav-logo {
+  font-size: x-large;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  justify-content: center;
+  width: 100%;
+}
+
+#dungeon-town-button {
+  /* margin-left: 85.75%; */
+  width: 10%;
 }
 
 #town-container {
@@ -77,7 +105,7 @@ div {
 
 .town-character-card {
   max-width: 15vw;
-  height: 50vh;
+  height: 48vh;
   background-color: beige;
   flex-direction: column;
   /* width: 20%; */
@@ -94,6 +122,11 @@ div {
   background-color: white;
 }
 
+.inner-town-character-card button {
+  background-color: rgb(247, 195, 117);
+  border-radius: 3px;
+}
+
 .roles {
   justify-content: center;
   background-color: burlywood;
@@ -102,7 +135,9 @@ div {
 .town-character-card-info
 
 #town-character-info {
-  max-width: 35vh;
+  max-width: 20vw;
+  height: 100%;
+  background-color: cornsilk;
 }
 
 #town-skill-container {
@@ -165,6 +200,11 @@ div {
   cursor: pointer;
 }
 
+#town-skill-info {
+  background-color: beige;
+  color: black;
+}
+
 #dungeon {
   height: 100vh;
   width: 100vw;
@@ -195,24 +235,34 @@ div {
 #floor-list {
   flex-direction: column;
   width: 100%;
+  border-style: none;
 }
 
 .floor {
+  border-style: none;
   flex-direction: column;
   width: 100%;
   /* background-color: black; */
-  justify-content: center;
+  /* justify-content: space-evenly; */
+  align-items: center;
+  margin-top: 1.3%;
+}
+
+.floor button {
+  width: 50%;
+  background-color: cornsilk;
 }
 
 #floor-info {
   flex-direction: column;
-  width: 100vw;
+  width: 50vw;
   height: 100%;
   background-color: white;
 }
 
 .floor-info-blurb {
   justify-content: center;
+  background-color: rgb(231, 228, 228);
 }
 
 #floor-info-div {
@@ -222,11 +272,12 @@ div {
 .floor-info-enemy-card {
   flex-direction: column;
   width: 20%;
-  height: 100%;
+  height: 60%;
 }
 
 .floor-info-enemy-card div {
   justify-content: center;
+  background-color: beige;
 }
 
 .floor-info-enemy-card-image {
@@ -244,11 +295,12 @@ div {
 #battle-enemy-container {
   height: 50%;
   justify-content: center;
+  align-items: center;
 }
 
 .battle-outer-enemy-card {
   width: 17%;
-  height: 92%;
+  height: 80%;
   padding: 1%;
   background-color: beige;
 }
@@ -266,11 +318,12 @@ div {
 #battle-hero-container {
   height: 50%;
   justify-content: center;
+  /* align-items: center; */
 }
 
 .battle-outer-hero-card {
   width: 17%;
-  max-height: 87%;
+  max-height: 80%;
   padding: 1%;
   background-color: beige;
 }
@@ -318,6 +371,10 @@ div {
   flex-direction: column;
 }
 
+#inner-battle-info div {
+  background-color: rgb(194, 194, 194);
+}
+
 #battle-log {
   flex-direction: column;
   /* width: 100%; */
@@ -325,6 +382,10 @@ div {
   overflow: scroll;
   align-self: flex-end;
   /* padding: 1%; */
+}
+
+#battle-log div {
+  background-color: rgb(194, 194, 194);
 }
 
 .hp {

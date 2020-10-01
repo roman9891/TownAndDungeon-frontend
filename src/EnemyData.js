@@ -2,8 +2,8 @@ const enemies = [
     {
         id: 0,
         name: `Blob`,
-        hp: 100,
-        mhp: 100,
+        hp: 50,
+        mhp: 50,
         nrg: 0,
         mNrg: 100,
         pAtk: 1,

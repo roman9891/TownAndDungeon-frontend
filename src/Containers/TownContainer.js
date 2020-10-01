@@ -20,6 +20,11 @@ class TownContainer extends Component {
         this.setState({town: !this.state.town})
     }
 
+    logoutHandler = () => {
+        console.log('logout')
+        this.props.logHandler()
+    }
+
     townHandler = (hero) => {
         this.setState({selectedHero: hero}, () => console.log(this.state))
     }
@@ -68,7 +73,14 @@ class TownContainer extends Component {
         // console.log(this.props)
         return (
             <div id='town-container'>
-                <button onClick={this.clickHandler}>{this.state.town ? 'To Dungeon' : 'To Town'}</button>
+                <div id='fake-nav'>
+                    <button onClick={this.logoutHandler}>Logout</button>
+                    <div id='nav-logo'>{'Town & Dungeon'}</div>
+                    
+                    {/* {`${this.props.user.username} | progress: ${this.props.user.progress}`} */}
+                    <button id='dungeon-town-button'onClick={this.clickHandler}>{this.state.town ? 'Dungeon →' : '← Town'}</button>
+                </div>
+                
                 {this.state.town ? 
                     <div id='character-skill-div'>
                         <TownCharacterContainer townHandler={this.townHandler}

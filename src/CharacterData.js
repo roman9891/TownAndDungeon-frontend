@@ -11,7 +11,7 @@ const classes = [
         mDef: 1,
         'starting-energy': 30,
         'max-energy': 100,
-        roles: ['P. Dmg', 'tank'],
+        roles: ['P. Dmg', 'Tank'],
         info: 'A hearty fighter that has strong physical attack and defense',
         image: 'https://opengameart.org/sites/default/files/warrior_f_attack.gif',
     },
@@ -27,7 +27,7 @@ const classes = [
         mDef: 1,
         'starting-energy': 30,
         'max-energy': 100,
-        roles: ['M. Dmg', 'support'],
+        roles: ['M. Dmg', 'Support'],
         info: 'Crafty magic user that can cast damaging and supportive spells',
         image: 'https://opengameart.org/sites/default/files/wizard_walk.gif'
     },

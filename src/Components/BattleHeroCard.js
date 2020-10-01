@@ -20,7 +20,7 @@ class BattleHeroCard extends Component {
                 <div className='battle-inner-hero-card' onClick={this.clickHandler} style={this.props.targeting ? targetingInnerDiv : null}>
                     <div>{this.props.hero.class}</div>
                     <img className='battle-hero-image' src={this.props.hero.image} alt=''></img>
-                    <div className='hp' style={hp}>{this.props.hero.hp}/{this.props.hero.mhp}</div>
+                    <div className='hp' style={hp}>{Math.ceil(this.props.hero.hp)}/{this.props.hero.mhp}</div>
                     {/* <div>{this.props.hero.hp}/{this.props.hero.mhp}</div> */}
                     <div className='nrg' style={nrg}>{this.props.hero['starting-energy']}/{this.props.hero['max-energy']}</div>
                     <div className='stance' style={this.props.hero.stance ? affected : null}>Stance: {this.props.hero.stance ? this.props.hero.stance[1] : null}</div>

@@ -50,6 +50,7 @@ class TownAndDungeon extends Component {
                         user={this.state.user} 
                         battleHandler={this.battleHandler}
                         skills={this.state.skills}
+                        logHandler={this.props.logHandler}
                     /> 
                 }
             </div>

@@ -18,7 +18,7 @@ class BattleEnemyCard extends Component {
                 <div className='battle-inner-enemy-card' style={this.props.targeting ? targetingInnerDiv : null}>
                     <div>{this.props.enemy.name}</div>
                     <img className='battle-enemy-image' src={this.props.enemy.image} alt=''></img>
-                    <div className='hp' style={hp}>{this.props.enemy.hp}/{this.props.enemy.mhp}</div>
+                    <div className='hp' style={hp}>{Math.ceil(this.props.enemy.hp)}/{this.props.enemy.mhp}</div>
                     {/* <div>{this.props.enemy.hp}/{this.props.enemy.mhp}</div> */}
                     <div className='nrg' style={nrg}>{this.props.enemy.nrg}/{this.props.enemy.mNrg}</div>
                     <div>Stance: {this.props.enemy.stance ? this.props.enemy.stance[1] : null}</div>
