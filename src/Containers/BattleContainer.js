@@ -19,9 +19,13 @@ class BattleContainer extends Component {
         info: {}
     }
 
+    //receives data from BattleSkillCard
+    //deducts NRG cost
+    //hides appropriate hero's actions for the remainder of the turn
+    //persists selected action and the respective hero that used it to state
     actionHandler = (action, heroIndex) => {
         const hero = this.state.heroes[heroIndex]
-        // console.log(`actionHandler`, hero, action.cost)
+
         hero['starting-energy'] = hero['starting-energy'] - action.cost
         
         this.setState({
@@ -29,9 +33,11 @@ class BattleContainer extends Component {
           show: false,
           actionsUsed: this.state.actionsUsed + 1
         }, () => this.chooseTarget(action))
-        // this.chooseTarget(action))
     }
 
+    //determines which targets are eligible for selected action
+    //if the user has to choose a target then it changes state to highlight available targets
+    //if no user input is necessary then proceeds directly to ActionByType to resolve action effects
     chooseTarget = (action) => {
         console.log(`choose target`)
         if (action.target === 'single enemy') {
@@ -62,6 +68,8 @@ class BattleContainer extends Component {
         }
     }
 
+    //receives data from a clicked target and persists the targets index value to state to allow the action to hit that target specifically
+    //TODO combine handlers
     targetHandler = (enemyIndex) => {
         this.setState({
           currentTarget: [this.state.enemies[enemyIndex], enemyIndex], 
@@ -79,6 +87,7 @@ class BattleContainer extends Component {
         , () => this.actionOnTarget(this.state.currentAction[0], this.state.currentTarget[0], this.state.currentAction[1]))
     }
 
+    //initiates ActionByType and checks to see if the user has expended all their actions for the turn
     actionOnTarget = (action, target, user) => {
         console.log('ActionOnTarget')
         this.actionByType(action, target, user)
@@ -86,13 +95,14 @@ class BattleContainer extends Component {
         this.setState({},() => setTimeout(() => {if (this.state.actionsUsed === this.state.heroes.length) {this.checkVictory()}}, 1000))
     }
 
+    //applies damage or effects to the target according to action type
     actionByType = (action, target, user) => {
-        // console.log(`${user.name} uses ${action.name} on ${target.name}`,action, target, user)
         setTimeout(() => {
             this.setState({log: [`${user.class ? user.class : user.name} uses ${action.name} on ${target.class ? target.class : target.name}`,...this.state.log]})
         }, 500)
         
-        
+        //if target has buff effect it removes the old one before applying the new one 
+        //otherwise it just applies the new one
         if (action.type === 'B') {
           if (target.buff) {
             target.buff[0].forEach(effect => {
@@ -109,7 +119,9 @@ class BattleContainer extends Component {
             target.buff = [action.beforeEffect, action.name]
           }
         }
-    
+        
+        //if target has stance effect it removes the old one before applying the new one 
+        //otherwise it just applies the new one
         if (action.type === 'S') {
           if (target.stance) {
             target.stance[0].forEach(effect => {
@@ -129,19 +141,16 @@ class BattleContainer extends Component {
         
         if (action.type === 'P') {
             target.hp = target.hp - (action.power * user.pAtk / target.pDef)
-            // this.setState({[this.state.actionsAgainst]: this.state[this.state.actionsAgainst].filter(unit => unit.hp > 0)})
         }
     
         if (action.type === 'M') {
             target.hp = target.hp - (action.power * user.mAtk / target.mDef)
-            // this.setState({[this.state.actionsAgainst]: this.state[this.state.actionsAgainst].filter(unit => unit.hp > 0)})
         }
 
         if (action.type === 'D') {
             const damage = action.damage(user, target)
 
             target.hp = target.hp - damage
-            // this.setState({[this.state.actionsAgainst]: this.state[this.state.actionsAgainst]})
         }
 
         if (action.type === 'E') {
@@ -150,10 +159,13 @@ class BattleContainer extends Component {
         this.setState({[this.state.actionsAgainst]: this.state[this.state.actionsAgainst].filter(unit => unit.hp > 0)})
     }
 
+    //runs after all users actions and all enemy actions and passes the turn to the opposite side
     checkVictory = () => {
         this.state.actionsAgainst === 'enemies' ? this.enemiesTurn() : this.endTurn()
     }
 
+    //iterates through each enemy's turn
+    //SetTimeout staggers each enemies turn so it's easier for the user to notice each action
     enemiesTurn = () => {
         this.setState({actionsAgainst: 'heroes'}, () => {
             this.state.enemies.forEach((enemy, i, arr)=> setTimeout(() => {
@@ -162,9 +174,8 @@ class BattleContainer extends Component {
                     setTimeout(this.checkVictory, 500)
                 }
                 console.log('forEachEnemy', i, arr.length)
-        }
-        , ((i * 600) + 1000)))
-        //   setTimeout(this.checkVictory, 500)
+            }
+            , ((i * 600) + 1000)))
         })
     }
     

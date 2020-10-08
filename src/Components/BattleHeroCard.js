@@ -18,7 +18,7 @@ class BattleHeroCard extends Component {
         return (
             <div className='battle-outer-hero-card' style={this.props.targeting ? targetingOuterDiv : null}>
                 <div className='battle-inner-hero-card' onClick={this.clickHandler} style={this.props.targeting ? targetingInnerDiv : null}>
-                    <div>{this.props.hero.class}</div>
+                    <div className='name'>{this.props.hero.class}</div>
                     <img className='battle-hero-image' src={this.props.hero.image} alt=''></img>
                     <div className='hp' style={hp}>{Math.ceil(this.props.hero.hp)}/{this.props.hero.mhp}</div>
                     {/* <div>{this.props.hero.hp}/{this.props.hero.mhp}</div> */}

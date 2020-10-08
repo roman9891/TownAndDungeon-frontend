@@ -105,7 +105,7 @@ button {
 
 .town-character-card {
   max-width: 15vw;
-  height: 48vh;
+  height: 38vh;
   background-color: beige;
   flex-direction: column;
   /* width: 20%; */
@@ -400,4 +400,9 @@ button {
   border: 1px solid black;
   border-radius: 5px;
   height: 10px;
+}
+
+.name {
+  justify-content: center;
+  background-color: burlywood;
 }
