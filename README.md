@@ -49,10 +49,10 @@ The cleric can either focus on healing or improving allies stats with buffs. The
 
 # Built With
 
--React
--Ruby on Rails
--ActiveRecord
--PostgreSQL
+- React
+- Ruby on Rails
+- ActiveRecord
+- PostgreSQL
 
 # Author
 Roman Opalacz
