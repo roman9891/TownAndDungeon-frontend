@@ -1,68 +1,58 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Town&Dungeon
 
-## Available Scripts
+Lead you heroes through the perils of the dungeon. Town&Dungeon is a turn based strategy game. Outfit your heroes with an assortment of skills that allow for different styles and strategies, then enter the dungeon and proceed up the floors to fight increasingly challenging foes.
 
-In the project directory, you can run:
+# Installation
 
-### `yarn start`
+Ensure you have Ruby and Rails installed before hand
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Fork and clone the [backend repo](https://github.com/roman9891/TownAndDungeon-backend)
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+```
+npm install
+```
 
-### `yarn test`
+# Instructions
+## Creating an Account
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Enter a username and password and click Create Account
 
-### `yarn build`
+## Town
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+From the town menu, you can see your hero party and the skills they currently have equipped. At the start of a new game, each hero only has 4 basic skills equipped. As you progress through the dungeon you will unlock additional skills for each hero. Clicking a hero will display all available skills at the bottom of the screen in the skill info panel. Clicking a skill in the info panel will pull up details about the skill. You can change which four skills a hero has equipped by clicking a skill name underneath the hero's image, then clicking a different skill from the bottom of the screen. Once you feel comfortable with your heroes' skills you can proceed to the dungeon by clicking the dungeon button in the top right corner.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+## Dungeon
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+From the dungeon menu, you can see all floors available. Emerging victorious from a floor will unlock the next floor. Clicking the floor button will display the enemies and a tip. Clicking 'To Battle!' to start combat.
 
-### `yarn eject`
+## Battle
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Use your heroes' skills to defeat your foes. Once all enemies HP has been reduced to 0 you win. Each hero can only use one skill per round and only if they have enough NRG. Skills that require too much NRG appear greyed out. At the end of each turn, both your heroes and the enemies with gain NRG. If an enemy survives long enough to gain full NRG they may use a special attack that can be devestating.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+# Strategy
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Warrior
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Warrior has skills that let it either focus on dealing physcial damage or absorb damage for the team. Skills like Beserk Stance and Embolden can raise the warrior's P.Atk and skills like Power Strike and Cyclone let him deal heavy damage. On the other hand, skills like Provoke or Selfless make the warrior more likely to be targeted. This can be used in conjunction with skills like Block, Guard Stance, and Embolden to bolster his defense. He can also remove and enemy's stance using Stunning Strike.
 
-## Learn More
+## Wizard
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+The wizard can focus on dealing heavy magic damage, and it can also provide support to the party with its other skills. Fireball, Ice Spear, and Lightning Storm each deal heavy damage but target differently, so you have to assess the floor's enemy composition to determine which skill will deal the most damage. The wizard can help any party member gain energy using charge. It can also make allies difficult to target using invisibility. It can use Enervate to boost it's own M.Atk but it can also be used to help a warrior provoke magic attacks.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Rogue
 
-### Code Splitting
+The rogue has skills that let him or hide or make other party members more likely to get targeted by enemies. He can also apply the poison condition to enemies to slowly drain them of health. Additionally, he's capable of dealing signicant physical damage, especially in conjunction with hide. 
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+## Cleric
 
-### Analyzing the Bundle Size
+The cleric can either focus on healing or improving allies stats with buffs. The cleric initially can only heal with first aid but eventually gains a stronger single target heal and a full party heal to choose from. He also gains the ability to buff every stat, although he's better at buffing defense than offense. At later levels, he gains the ability to buff the entire teams physical or magical defense.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+# Built With
 
-### Making a Progressive Web App
+-React
+-Ruby on Rails
+-ActiveRecord
+-PostgreSQL
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+# Author
+Roman Opalacz
