@@ -39,13 +39,13 @@ class Login extends Component {
             <div id='login'>
                 <div id='logo'>{'Town & Dungeon'}</div>
                 <form >
-                    <label>Username</label>
+                    {/* <label>Username</label>
                     <input name='username' onChange={this.changeHandler} value={this.state.username}></input>
                     <label>Password</label>
                     <input type='password' name='password' onChange={this.changeHandler} value={this.state.password}></input>
-                    <br/>
-                    <button onClick={this.clickHandler} name='login'>Login</button>
-                    <button onClick={this.clickHandler} name='create'>Create Account</button>
+                    <br/> */}
+                    <button onClick={this.clickHandler} name='login'>Start</button>
+                    {/* <button onClick={this.clickHandler} name='create'>Create Account</button> */}
                 </form>
             </div>
         );
