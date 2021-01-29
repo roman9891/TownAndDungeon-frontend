@@ -3,7 +3,7 @@ import { appContext } from './appContext'
 import styled from 'styled-components'
 
 export const Login = props => {
-    const {setUser, user} = useContext(appContext)
+    const {setUser} = useContext(appContext)
     const [error, setError] = useState(``);
     const [username, setUsername] = useState(``)
     const [password, setPassword] = useState(``)
@@ -91,6 +91,7 @@ export const Login = props => {
                 <input type="password" onChange={changePassword} value={password}></input>
                 <Button primary name="login" onClick={loginHandler}>Login</Button>
                 <Button primary onClick={createUser}>Create</Button>
+                {error && <p>{error}</p>}
             </Form>
     )
 }

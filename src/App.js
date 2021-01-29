@@ -19,7 +19,7 @@ class App extends Component {
   render() {
     return (
       <div id='app'>
-        {this.state.login ? <LoginContainer appHandler={this.appHandler}/> : <TownAndDungeon user={this.state.user}/>} 
+        {!this.state.login ? <LoginContainer appHandler={this.appHandler}/> : <TownAndDungeon user={this.state.user}/>} 
       </div>
     );
   }

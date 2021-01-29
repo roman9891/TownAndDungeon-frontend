@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import TownCharacterCard from '../Components/TownCharacterCard'
-import {classes} from '../CharacterData'
+import {classes} from '../Data/CharacterData'
 
 class TownCharacterList extends Component {
     

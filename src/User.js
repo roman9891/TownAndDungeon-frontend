@@ -7,15 +7,21 @@ export const User = props => {
     const {user, setUser} = useContext(appContext)
     
     return(
-        <div>
-            <div>
-                {`Welcome, ${user.username}`}
-            </div>
+        <Wrapper>
+            <div>{`${user.username}`}</div>
+            <div>{`Progress: ${user.progress}`}</div>
             <Button onClick={() => setUser(null)}>Logout</Button>
-        </div>
+        </Wrapper>
 
     )
 }
+
+const Wrapper = styled.div`
+    border: 1px solid black;
+    height: 100%;
+    padding: 5px;
+    background: beige;
+`
 
 const Button = styled.button`
   background: ${props => props.primary ? "#299637" : "white"};

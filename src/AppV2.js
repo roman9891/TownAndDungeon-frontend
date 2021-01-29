@@ -1,8 +1,9 @@
 import React from 'react'
-import {useState, useEffect, useContext} from 'react'
+import {useState} from 'react'
 import {Provider} from './appContext'
 import {Login} from './LoginV2'
 import {TnD} from './TnD'
+import {classes} from './Data/CharacterData'
 
 const defaultUser = {
     id: 0,
@@ -12,11 +13,15 @@ const defaultUser = {
 
 export const App = () => {
     const [user, setUser] = useState(defaultUser)
+    const [heroes, setHeroes] = useState(classes)
+
 
     return(
         <Provider value={{
             setUser: setUser,
-            user: user
+            user: user,
+            setHeroes: setHeroes,
+            heroes: heroes
         }}>
             {!user ? <Login/> : <TnD/>}
         </Provider>

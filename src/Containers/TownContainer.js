@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import TownCharacterContainer from './TownCharacterContainer'
 import TownSkillContainer from './TownSkillContainer'
 import Dungeon from './Dungeon'
-import {classes} from '../CharacterData'
-import {skills} from '../SkillData'
+import {classes} from '../Data/CharacterData'
+import {skills} from '../Data/SkillData'
 
 class TownContainer extends Component {
     state = {

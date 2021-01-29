@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Floor from '../Components/Floor'
-import {floors} from '../FloorData'
+import {floors} from '../Data/FloorData'
 
 class FloorList extends Component {
 

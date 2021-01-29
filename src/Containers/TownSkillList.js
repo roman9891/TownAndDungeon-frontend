@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import TownSkillCard from '../Components/TownSkillCard'
-import {skills} from '../SkillData'
+import {skills} from '../Data/SkillData'
 
 class TownSkillList extends Component {
     state = {
